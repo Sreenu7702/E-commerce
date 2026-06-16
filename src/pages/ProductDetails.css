@@ -1,0 +1,23 @@
+.details-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.details-container img {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.details-container h1 {
+  margin-bottom: 15px;
+}
+
+.details-container p {
+  margin: 10px 0;
+}
+
+.details-container button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
