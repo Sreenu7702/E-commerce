@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+  const navigate=useNavigate();
   const [errors, setErrors] = useState({ email: "", password: "" });
 
   function handleLogin(e) {
@@ -35,7 +36,7 @@ function Login() {
     if (!valid) return;
 
     alert("Login Successful");
-    window.location.href = "/home";
+    navigate("/home")
   }
 
   return (
