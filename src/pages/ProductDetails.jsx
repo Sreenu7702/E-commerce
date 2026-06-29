@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
+import "./ProductDetails.css";
 
 function ProductDetails() {
   const { id } = useParams();
-
   const { addToCart } = useContext(CartContext);
 
   const [product, setProduct] = useState(null);
@@ -18,18 +18,43 @@ function ProductDetails() {
   if (!product) {
     return <h2>Loading...</h2>;
   }
+  
+
 
   return (
-    <div>
-      <img src={product.image} width="200" />
+    <div className="product-details">
+      <div className="product-image-section">
+        <img
+          src={product.image}
+          alt={product.title}
+          className="details-image"
+        />
+      </div>
 
-      <h2>{product.title}</h2>
+      <div className="product-info">
+        <h2>{product.title}</h2>
 
-      <h3>${product.price}</h3>
+        <p className="category">
+          {product.category}
+        </p>
 
-      <button className="add-cart-btn" onClick={() => addToCart(product)}>
-        Add To Cart
-      </button>
+        <h3 className="price">
+          ₹ {product.price}
+        </h3>
+
+        <p className="description">
+          {product.description}
+        </p>
+
+        <button
+          className="add-cart-btn"
+          onClick={() =>{
+            alert("Added To Cart Successfully");
+            addToCart(product) }}
+        >
+          Add To Cart
+        </button>
+      </div>
     </div>
   );
 }

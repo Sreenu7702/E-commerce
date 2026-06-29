@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import Products from "../components/Products";
+import "./Home.css";
 
 function Home() {
   const { cart } = useContext(CartContext);
@@ -12,25 +13,12 @@ function Home() {
   );
 
   return (
-    <div>
-      <h1 style={{ textAlign: "center" }}>
-        E-Commerce Store
-      </h1>
+    <div className="home">
+      <div className="header">
+        <h1>E-Commerce Store</h1>
 
-      <div
-        style={{
-          textAlign: "end",
-          marginBottom: "20px",
-          paddingRight: "20px",
-        }}
-      >
         <Link to="/cart">
-          <button
-            style={{
-              padding: "10px 20px",
-              cursor: "pointer",
-            }}
-          >
+          <button className="cart-btn">
             Cart ({totalItems})
           </button>
         </Link>

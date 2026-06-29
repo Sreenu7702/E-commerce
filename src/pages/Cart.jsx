@@ -51,11 +51,11 @@ function Cart() {
                   <h3>{item.title}</h3>
 
                   <p className="cart-price">
-                    ${item.price}
+                    ₹{item.price}
                   </p>
 
                   <p>
-                    Subtotal: $
+                    Subtotal: ₹ 
                     {(item.price * item.quantity).toFixed(
                       2
                     )}
@@ -101,7 +101,7 @@ function Cart() {
             </h2>
 
             <h2>
-              Total Price: $
+              Total Price: ₹
               {totalPrice.toFixed(2)}
             </h2>
             <Link to="/checkout">

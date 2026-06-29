@@ -92,8 +92,8 @@ function Checkout() {
         onChange={handleChange}
       />
 
-      <h2>
-        Total: $
+      <h2 className="total-price">
+        Total: ₹
         {totalPrice.toFixed(2)}
       </h2>
 

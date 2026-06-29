@@ -1,27 +1,32 @@
 import { Link } from "react-router-dom";
+import "./OrderSuccess.css";
 
 function OrderSuccess() {
-  const orderId =
-    localStorage.getItem("orderId");
+  const orderId = localStorage.getItem("orderId");
 
   return (
-    <div
-      style={{
-        textAlign: "center",
-        marginTop: "100px",
-      }}
-    >
-      <h1>Order Successful 🎉</h1>
+    <div className="success-container">
+      <div className="success-card">
+        <div className="success-icon">✅</div>
 
-      <h2>
-        Order ID: {orderId}
-      </h2>
+        <h1>Order Successful</h1>
 
-      <Link to="/home">
-        <button>
-          Continue Shopping
-        </button>
-      </Link>
+        <p>
+          Thank you for your purchase.
+        </p>
+
+        <h2>Order ID</h2>
+
+        <div className="order-id">
+          {orderId}
+        </div>
+
+        <Link to="/home">
+          <button className="shop-btn">
+            Continue Shopping
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

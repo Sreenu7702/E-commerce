@@ -24,9 +24,11 @@ function Products() {
     product.title.toLowerCase().includes(search.toLowerCase())
   );
 
+
   if (loading) {
     return <h2>Loading Products...</h2>;
   }
+
 
   return (
     <div className="products-container">
@@ -40,7 +42,7 @@ function Products() {
         onChange={(e) => setSearch(e.target.value)}
         className="search-input"
       />
-
+      {filteredProducts.length===0 ?(<h2>Product Not Available</h2>):(
       <div className="products-grid">
         {filteredProducts.map((product) => (
           <div key={product.id} className="product-card">
@@ -52,14 +54,15 @@ function Products() {
 
             <h3>{product.title}</h3>
 
-            <p>${product.price}</p>
+            <p className="price">₹ {product.price}</p>
 
             <Link to={`/home/product/${product.id}`}>
-              <button>View Details</button>
+              <button className="details-btn">View Details</button>
             </Link>
           </div>
         ))}
       </div>
+      )}
     </div>
   );
 }

@@ -2,12 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
-body {
-  background: linear-gradient(135deg, #4f46e5, #9333ea);
-  font-family: Arial, sans-serif;
-}
+ body{
+  background-color: rgb(31, 109, 199);
+ }
 
 .login-container {
   min-height: 100vh;

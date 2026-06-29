@@ -1,0 +1,54 @@
+.success-container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.success-card {
+  background: white;
+  width: 450px;
+  max-width: 100%;
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+ 
+}
+
+.success-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.success-card h1 {
+  color: #16a34a;
+  margin-bottom: 10px;
+}
+
+.success-card p {
+  color: #5c2222;
+  margin-bottom: 25px;
+}
+
+.order-id {
+  background: #4b669c;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 15px 0 25px;
+}
+
+.shop-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.shop-btn:hover {
+  background: #0d8db4;
+}
