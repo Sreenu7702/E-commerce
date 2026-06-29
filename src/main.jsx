@@ -6,7 +6,7 @@ import CartProvider from "./context/CartContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <HashRouter basename="/E-commerce">
+    <HashRouter >
       <CartProvider>
         <App />
       </CartProvider>
