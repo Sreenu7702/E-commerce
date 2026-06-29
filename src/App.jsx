@@ -8,7 +8,7 @@ import OrderSuccess from "./pages/OrderSuccess";
 
 function App() {
   return (
-    <BrowserRouter basename="/E-commerce">
+   
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
@@ -17,7 +17,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/success" element={<OrderSuccess />} />
       </Routes>
-    </BrowserRouter>
+    
   );
 }
 
