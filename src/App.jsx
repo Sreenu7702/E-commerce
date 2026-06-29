@@ -6,18 +6,16 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
 
-
-
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/E-commerce">
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/home/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout/>}/>
-        <Route path="/success" element={<OrderSuccess/>}/>
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/success" element={<OrderSuccess />} />
       </Routes>
     </BrowserRouter>
   );
