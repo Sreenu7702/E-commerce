@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
-import Products from "../components/Products";
+import { CartContext } from "../context/CartContext.js";
+import Products from "../components/Products.js";
 import "./Home.css";
 
 function Home() {
-  const { cart } = useContext(CartContext);
+  const cartContext = useContext(CartContext);
+
+  if (!cartContext) {
+    throw new Error("CartContext not found");
+  }
+
+  const { cart } = cartContext;
 
   const totalItems = cart.reduce(
     (total, item) => total + item.quantity,

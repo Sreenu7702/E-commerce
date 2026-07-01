@@ -70,15 +70,3 @@
   background: #59099b;
 }
 
-@media (max-width: 768px) {
-  .product-details {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .details-image {
-    max-width: 250px;
-    height: 250px;
-  }
-}
-

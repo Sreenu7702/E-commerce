@@ -1,25 +1,36 @@
 import { useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../context/CartContext.js";
 import "./Cart.css";
 import { Link } from "react-router-dom";
 
 function Cart() {
+  const cartContext =
+    useContext(CartContext);
+
+  if (!cartContext) {
+    throw new Error(
+      "CartContext not found"
+    );
+  }
+
   const {
     cart,
     clearCart,
     removeFromCart,
     increaseQuantity,
     decreaseQuantity,
-  } = useContext(CartContext);
+  } = cartContext;
 
   const totalItems = cart.reduce(
-    (total, item) => total + item.quantity,
+    (total, item) =>
+      total + item.quantity,
     0
   );
 
   const totalPrice = cart.reduce(
     (total, item) =>
-      total + item.price * item.quantity,
+      total +
+      item.price * item.quantity,
     0
   );
 
@@ -55,26 +66,33 @@ function Cart() {
                   </p>
 
                   <p>
-                    Subtotal: ₹ 
-                    {(item.price * item.quantity).toFixed(
-                      2
-                    )}
+                    Subtotal: ₹
+                    {(
+                      item.price *
+                      item.quantity
+                    ).toFixed(2)}
                   </p>
 
                   <div className="qty-box">
                     <button
                       onClick={() =>
-                        decreaseQuantity(item.id)
+                        decreaseQuantity(
+                          item.id
+                        )
                       }
                     >
                       -
                     </button>
 
-                    <span>{item.quantity}</span>
+                    <span>
+                      {item.quantity}
+                    </span>
 
                     <button
                       onClick={() =>
-                        increaseQuantity(item.id)
+                        increaseQuantity(
+                          item.id
+                        )
                       }
                     >
                       +
@@ -85,31 +103,40 @@ function Cart() {
                 <button
                   className="remove-btn"
                   onClick={() =>
-                    removeFromCart(item.id)
+                    removeFromCart(
+                      item.id
+                    )
                   }
                 >
                   Remove
                 </button>
-
               </div>
             ))}
           </div>
 
           <div className="cart-summary">
             <h2>
-              Total Items: {totalItems}
+              Total Items:
+              {totalItems}
             </h2>
 
             <h2>
               Total Price: ₹
               {totalPrice.toFixed(2)}
             </h2>
+
             <Link to="/checkout">
-                <button className="checkout-btn">
-                    Checkout
-                </button>
+              <button className="checkout-btn">
+                Checkout
+              </button>
             </Link>
-            <button className="clear-btn" onClick={clearCart}>Clear Cart</button>
+
+            <button
+              className="clear-btn"
+              onClick={clearCart}
+            >
+              Clear Cart
+            </button>
           </div>
         </>
       )}

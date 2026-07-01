@@ -1,31 +1,57 @@
 import { useState, useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import { CartContext } from "../context/CartContext.js";
 import { useNavigate } from "react-router-dom";
 import "./Checkout.css";
 
+type FormData = {
+  name: string;
+  phone: string;
+  address: string;
+  city: string;
+  pincode: string;
+};
+
 function Checkout() {
-  const { cart, clearCart } = useContext(CartContext);
+  const cartContext =
+    useContext(CartContext);
+
+  if (!cartContext) {
+    throw new Error(
+      "CartContext not found"
+    );
+  }
+
+  const { cart, clearCart } =
+    cartContext;
 
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    city: "",
-    pincode: "",
-  });
+  const [form, setForm] =
+    useState<FormData>({
+      name: "",
+      phone: "",
+      address: "",
+      city: "",
+      pincode: "",
+    });
 
   const totalPrice = cart.reduce(
     (total, item) =>
-      total + item.price * item.quantity,
+      total +
+      item.price * item.quantity,
     0
   );
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement |
+      HTMLTextAreaElement
+    >
+  ) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.value,
+      [e.target.name as keyof FormData]:
+        e.target.value,
     });
   };
 

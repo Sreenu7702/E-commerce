@@ -1,10 +1,10 @@
 import {  Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import ProductDetails from "./pages/ProductDetails";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
-import OrderSuccess from "./pages/OrderSuccess";
+import Login from "./pages/Login.js";
+import Home from "./pages/Home.js";
+import ProductDetails from "./pages/ProductDetails.js";
+import Cart from "./pages/Cart.js";
+import Checkout from "./pages/Checkout.js";
+import OrderSuccess from "./pages/OrderSuccess.js";
 
 function App() {
   return (

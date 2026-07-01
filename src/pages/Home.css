@@ -38,17 +38,3 @@
   background-color: #03282b;
 }
 
-@media (max-width: 768px) {
-  .home {
-    padding: 15px;
-  }
-
-  .header {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .header h1 {
-    font-size: 24px;
-  }
-}

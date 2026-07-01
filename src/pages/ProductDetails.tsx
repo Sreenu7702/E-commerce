@@ -1,25 +1,56 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { CartContext } from "../context/CartContext";
+import {
+  CartContext,
+  type CartContextType,
+} from "../context/CartContext";
 import "./ProductDetails.css";
+
+type Product = {
+  id: number;
+  title: string;
+  price: number;
+  image: string;
+  category: string;
+  description: string;
+};
 
 function ProductDetails() {
   const { id } = useParams();
-  const { addToCart } = useContext(CartContext);
 
-  const [product, setProduct] = useState(null);
+  const cartContext = useContext(
+    CartContext
+  ) as CartContextType | null;
+
+  if (!cartContext) {
+    throw new Error("CartContext not found");
+  }
+
+  const { addToCart } = cartContext;
+
+  const [product, setProduct] =
+    useState<Product | null>(null);
 
   useEffect(() => {
+    if (!id) return;
+
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then((res) => res.json())
-      .then((data) => setProduct(data));
+      .then((data: Product) => {
+        setProduct(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, [id]);
+
+  if (!id) {
+    return <h2>Product not found</h2>;
+  }
 
   if (!product) {
     return <h2>Loading...</h2>;
   }
-  
-
 
   return (
     <div className="product-details">
@@ -48,9 +79,10 @@ function ProductDetails() {
 
         <button
           className="add-cart-btn"
-          onClick={() =>{
+          onClick={() => {
             alert("Added To Cart Successfully");
-            addToCart(product) }}
+            addToCart(product);
+          }}
         >
           Add To Cart
         </button>
