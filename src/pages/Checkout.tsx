@@ -12,8 +12,7 @@ type FormData = {
 };
 
 function Checkout() {
-  const cartContext =
-    useContext(CartContext);
+  const cartContext =useContext(CartContext);
 
   if (!cartContext) {
     throw new Error(
@@ -26,8 +25,7 @@ function Checkout() {
 
   const navigate = useNavigate();
 
-  const [form, setForm] =
-    useState<FormData>({
+  const [form, setForm] =useState<FormData>({
       name: "",
       phone: "",
       address: "",

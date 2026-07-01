@@ -1,7 +1,4 @@
-import {
-  createContext,
-  useState,
-} from "react";
+import {createContext,useState,} from "react";
 
 type Product = {
   id: number;
@@ -50,8 +47,7 @@ export const CartContext =
 function CartProvider({
   children,
 }: CartProviderProps) {
-  const [cart, setCart] =
-    useState<CartItem[]>([]);
+  const [cart, setCart] =useState<CartItem[]>([]);
 
   const addToCart = (
     product: Product

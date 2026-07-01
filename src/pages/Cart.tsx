@@ -4,8 +4,7 @@ import "./Cart.css";
 import { Link } from "react-router-dom";
 
 function Cart() {
-  const cartContext =
-    useContext(CartContext);
+  const cartContext =useContext(CartContext);
 
   if (!cartContext) {
     throw new Error(

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import type { SubmitEventHandler } from "react";
 import "./Login.css";
 
 type Errors = {
@@ -18,14 +19,12 @@ function Login() {
     password: "",
   });
 
-  function handleLogin(
-    e: React.FormEvent<HTMLFormElement>
-  ) {
+  const handleLogin: SubmitEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
     let valid = true;
 
-    let currentErrors: Errors = {
+    const currentErrors: Errors = {
       email: "",
       password: "",
     };
@@ -58,7 +57,7 @@ function Login() {
 
     alert("Login Successful");
     navigate("/home");
-  }
+  };
 
   return (
     <div className="login-container">
