@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter } from "react-router-dom";
-import App from "./App.js";
-import CartProvider from "./context/CartContext.js";
+import { Provider } from "react-redux";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+import App from "./App";
+import { store } from "./app/store";
+
+ReactDOM.createRoot(
+  document.getElementById("root")!
+).render(
   <React.StrictMode>
-    <HashRouter >
-      <CartProvider>
+    <Provider store={store}>
+      <HashRouter>
         <App />
-      </CartProvider>
-    </HashRouter>
+      </HashRouter>
+    </Provider>
   </React.StrictMode>
 );

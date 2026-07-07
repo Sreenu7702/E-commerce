@@ -1,24 +1,20 @@
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext.js";
-import "./Cart.css";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../app/store";
+import {
+  clearCart,
+  removeFromCart,
+  increaseQuantity,
+  decreaseQuantity,
+} from "../features/cartslice";
+import "./Cart.css";
 
 function Cart() {
-  const cartContext =useContext(CartContext);
+  const dispatch = useDispatch();
 
-  if (!cartContext) {
-    throw new Error(
-      "CartContext not found"
-    );
-  }
-
-  const {
-    cart,
-    clearCart,
-    removeFromCart,
-    increaseQuantity,
-    decreaseQuantity,
-  } = cartContext;
+  const cart = useSelector(
+    (state: RootState) => state.cart.cart
+  );
 
   const totalItems = cart.reduce(
     (total, item) =>
@@ -75,8 +71,10 @@ function Cart() {
                   <div className="qty-box">
                     <button
                       onClick={() =>
-                        decreaseQuantity(
-                          item.id
+                        dispatch(
+                          decreaseQuantity(
+                            item.id
+                          )
                         )
                       }
                     >
@@ -89,8 +87,10 @@ function Cart() {
 
                     <button
                       onClick={() =>
-                        increaseQuantity(
-                          item.id
+                        dispatch(
+                          increaseQuantity(
+                            item.id
+                          )
                         )
                       }
                     >
@@ -102,8 +102,10 @@ function Cart() {
                 <button
                   className="remove-btn"
                   onClick={() =>
-                    removeFromCart(
-                      item.id
+                    dispatch(
+                      removeFromCart(
+                        item.id
+                      )
                     )
                   }
                 >
@@ -132,7 +134,9 @@ function Cart() {
 
             <button
               className="clear-btn"
-              onClick={clearCart}
+              onClick={() =>
+                dispatch(clearCart())
+              }
             >
               Clear Cart
             </button>

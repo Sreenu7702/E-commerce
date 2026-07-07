@@ -1,5 +1,7 @@
-import { useState, useContext } from "react";
-import { CartContext } from "../context/CartContext.js";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../app/store";
+import { clearCart } from "../features/cartslice";
 import { useNavigate } from "react-router-dom";
 import "./Checkout.css";
 
@@ -12,20 +14,16 @@ type FormData = {
 };
 
 function Checkout() {
-  const cartContext =useContext(CartContext);
+  const dispatch = useDispatch();
 
-  if (!cartContext) {
-    throw new Error(
-      "CartContext not found"
-    );
-  }
-
-  const { cart, clearCart } =
-    cartContext;
+  const cart = useSelector(
+    (state: RootState) => state.cart.cart
+  );
 
   const navigate = useNavigate();
 
-  const [form, setForm] =useState<FormData>({
+  const [form, setForm] =
+    useState<FormData>({
       name: "",
       phone: "",
       address: "",
@@ -73,7 +71,7 @@ function Checkout() {
       orderId
     );
 
-    clearCart();
+    dispatch(clearCart());
 
     navigate("/success");
   };

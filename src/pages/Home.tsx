@@ -1,17 +1,13 @@
 import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { CartContext } from "../context/CartContext.js";
-import Products from "../components/Products.js";
+import { useSelector } from "react-redux";
+import type { RootState } from "../app/store";
+import Products from "../components/Products";
 import "./Home.css";
 
 function Home() {
-  const cartContext = useContext(CartContext);
-
-  if (!cartContext) {
-    throw new Error("CartContext not found");
-  }
-
-  const { cart } = cartContext;
+  const cart = useSelector(
+    (state: RootState) => state.cart.cart
+  );
 
   const totalItems = cart.reduce(
     (total, item) => total + item.quantity,

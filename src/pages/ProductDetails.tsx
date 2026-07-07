@@ -1,32 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
-  CartContext,
-  type CartContextType,
-} from "../context/CartContext";
+  addToCart,
+  type Product,
+} from "../features/cartslice";
 import "./ProductDetails.css";
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
-  category: string;
-  description: string;
-};
 
 function ProductDetails() {
   const { id } = useParams();
 
-  const cartContext = useContext(
-    CartContext
-  ) as CartContextType | null;
-
-  if (!cartContext) {
-    throw new Error("CartContext not found");
-  }
-
-  const { addToCart } = cartContext;
+  const dispatch = useDispatch();
 
   const [product, setProduct] =
     useState<Product | null>(null);
@@ -34,7 +18,9 @@ function ProductDetails() {
   useEffect(() => {
     if (!id) return;
 
-    fetch(`https://fakestoreapi.com/products/${id}`)
+    fetch(
+      `https://fakestoreapi.com/products/${id}`
+    )
       .then((res) => res.json())
       .then((data: Product) => {
         setProduct(data);
@@ -80,8 +66,13 @@ function ProductDetails() {
         <button
           className="add-cart-btn"
           onClick={() => {
-            alert("Added To Cart Successfully");
-            addToCart(product);
+            alert(
+              "Added To Cart Successfully"
+            );
+
+            dispatch(
+              addToCart(product)
+            );
           }}
         >
           Add To Cart
